@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Check if the current directory is a Git repository
+if ! git rev-parse --is-inside-work-tree &> /dev/null; then
+  echo "Error: Not inside a Git repository. Aborting."
+  exit 1
+fi
+
+# Check if there are any changes to commit
+if git diff-index --quiet HEAD --; then
+  echo "No changes to commit."
+  exit 0
+fi
+
+# Prompt the user for a commit message
+echo "Enter the commit message:"
+read commit_message
+
+# Git add all files
+git add .
+
+# Git commit with the provided message
+git commit -m "$commit_message"
+
+# Git push to the default remote and branch (usually origin master/main)
+git push
+
+echo "Changes committed and pushed successfully."
+
