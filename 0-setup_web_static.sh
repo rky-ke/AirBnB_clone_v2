@@ -11,12 +11,14 @@ echo
 
 #--create the directories
 sudo mkdir -p /data/web_static/{releases/test,shared}
+sudo chmod -R 755 /data/web_static/releases/test
+
 
 echo -e "\e[1;32m directories created\e[0m"
 echo
 
 #--adds test string
-echo "<h1>Welcome to www.iamrkyegon.tech</h1>" > /data/web_static/releases/test/index.htmil
+echo "<h1>Welcome to www.iamrkyegon.tech</h1>" > /data/web_static/releases/test/index.html
 echo -e "\e[1;32m Test String added\e[0m"
 echo
 
