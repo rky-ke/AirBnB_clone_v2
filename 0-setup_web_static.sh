@@ -16,7 +16,7 @@ echo -e "\e[1;32m directories created\e[0m"
 echo
 
 #--adds test string
-echo "<h1>Welcome to www.iamrkyegon.tech</h1>" > sudo /data/web_static/releases/test/index.html
+echo "<h1>Welcome to www.iamrkyegon.tech</h1>" > /data/web_static/releases/test/index.html
 echo -e "\e[1;32m Test String added\e[0m"
 echo
 
@@ -27,10 +27,23 @@ sudo rm -f /data/web_static/current
 sudo ln -s /data/web_static/releases/test/ /data/web_static/current
 sudo chown -hR ubuntu:ubuntu /data
 
-sudo sed -i '/^ *location \/hbnb_static\/ {$/a \ \ \ \ \ \ alias /data/web_static/current/;' /etc/nginx/nginx.conf
-sudo ln -sf '/etc/nginx/sites-available/default' '/etc/nginx/sites-enabled/default'
-echo -e "\e[1;32m Symbolic link created\e[0m"
-echo
+# Configure Nginx
+cat <<EOF | sudo tee /etc/nginx/sites-available/default > /dev/null
+server {
+    listen 80;
+    server_name _;
+    add_header X-Served-By \$hostname;
+
+    location / {
+        root /var/www/html;
+        index index.html;
+    }
+        location /hbnb_static/ {
+        alias /data/web_static/current/;
+    }
+
+}
+EOF
 
 #--restart NGINX
 sudo service nginx restart
