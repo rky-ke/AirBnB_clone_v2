@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-set -e
 # sets up my web servers for the deployment of web_static
+set -e
 echo -e "\e[1;32m START\e[0m"
 
 #--Updating the packages
@@ -16,7 +16,7 @@ echo -e "\e[1;32m directories created\e[0m"
 echo
 
 #--adds test string
-echo "<h1>Welcome to www.iamrkyegon.tech</h1>" > /data/web_static/releases/test/index.html
+echo "<h1>Welcome to www.iamrkyegon.tech</h1>" > /data/web_static/releases/test/index.htmil
 echo -e "\e[1;32m Test String added\e[0m"
 echo
 
