@@ -5,6 +5,7 @@ from datetime import datetime
 import os.path
 from fabric.api import local, task
 
+
 @task
 def do_pack():
     """Create a tar gzipped archive of the directory web_static."""
