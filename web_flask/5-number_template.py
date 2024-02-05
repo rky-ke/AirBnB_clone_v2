@@ -11,7 +11,7 @@ Routes:
 """
 
 
-from flask import Flask, escape
+from flask import Flask, escape, render_template
 
 app = Flask(__name__)
 
@@ -40,5 +40,11 @@ def python_text(text="is cool"):
 def is_number(number):
         return '{} is a number'.format(number)
 
+@app.route("/number_template/<int:number>", strict_slashes=False)
+def number_template(number):
+    # Render the HTML template with the given number
+    return render_template('5-number.html', number=number)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+
