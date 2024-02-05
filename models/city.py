@@ -1,15 +1,22 @@
 #!/usr/bin/python3
-"""Defines the City class."""
-from models.base_model import BaseModel
+"""This is the city class"""
+import models
+from models.base_model import BaseModel, Base
+from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy.orm import relationship
 
 
-class City(BaseModel):
-    """Represent a city.
-
+class City(BaseModel, Base):
+    """This is the class for City
     Attributes:
-        state_id (str): The state id.
-        name (str): The name of the city.
+        state_id: The state id
+        name: input name
     """
-
-    state_id = ""
-    name = ""
+    # initialize class for file/db storage type
+    __tablename__ = 'cities'
+    __table_args__ = ({
+        'mysql_default_charset': 'latin1'
+    })
+    name = Column(String(128), nullable=False)
+    state_id = Column(String(60), ForeignKey('states.id'), nullable=False)
+    places = relationship('Place', cascade='all, delete', backref='cities')
