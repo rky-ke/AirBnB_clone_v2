@@ -1,0 +1,24 @@
+/* Header CSS */
+
+header {
+	color: white;
+	height: 70px;
+	width: 100%;
+	border-bottom: 1px solid #CCCCCC;
+	display: flex;
+	align-items: center;
+}
+
+.logo {
+	padding-left: 20px;
+	width: 140px;
+	height: 50px;
+	background-image: url('../images/logo.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+.logo-text {
+	display: none;
+  }
